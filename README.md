@@ -34,3 +34,20 @@ Download Requirements:
 5. Download all the csv files from the [Dataset Link](https://data.telangana.gov.in/dataset/telangana-industries-ts-ipass-data) and extract all the files under the folder name 'Telangana_Industries_TS_IPass'.
 6. Install [Pandas](https://pandas.pydata.org/docs/getting_started/install.html)
 7. Install [MatplotLib](https://matplotlib.org/stable/users/installing/index.html)
+
+Noteable Insights:
+1. Average Investment in Telangana across all industries was 10.028852 with an average of 85 employees in every company.
+2. Median Investment across Districts in Telangana are varied with Mahbubnagar, Medak, Rangareddy getting more than 1.02 Cr.
+3. Highest investment in Telangana comes under Real Estate,Industrial Parks and IT Buildings	with a median amount of 129.50 Cr. followed by Thermal Power Plant with 87.0 Cr. and Solar and Other Renewable Energy with 73.4831 Cr. 
+
+4. Top 7 Sectors in terms of Units are:
+
+| Sector | No of Units |
+| ------------- | ------------- |
+| Pharmaceuticals and Chemicals  | 1077 |
+| Plastic and Rubber  | 1112 |
+| Granite and Stone Crushing  | 1264 |
+| Cement, Cement & Concrete Products, Fly Ash Bricks  | 1690 |
+| Agro based incl Cold Storages  | 2124 |
+| Food Processing  | 3271 |
+| Engineering  | 3311 |
