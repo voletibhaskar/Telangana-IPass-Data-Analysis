@@ -2,6 +2,8 @@
 
 Analyzed a multivariate dataset "Telangana IPASS Data 2017-2022". Applied ETL methods to raw data to generate a clean master dataset. Applied Data Visualization techniques to generate unique inisghts about India's startup state's current standing in Investments, Employees etc.
 
+[Understand Telangana's Growth as the Fastest Growing State in India] (https://medium.com/@bhaskarvoleti.curiousity/telangana-a-rising-economic-growth-story-for-india-481ecdf8f6fd)
+
 ## Introduction to the Dataset
 
 | Columns | Entries | About |
