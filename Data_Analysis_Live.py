@@ -33,7 +33,7 @@ def investment_insights(df):
     df['Year'] = pd.to_datetime(df['application_date']).dt.year
     df_current = df.groupby(['Year']).sum()['investment']
 #    st.header("Investment Insights")
-    st.markdown(f"<h1 style='text-align: center; color: black;'>Investment Insights</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>Investment Insights</h1>", unsafe_allow_html=True)
     st.write(df.describe())
     st.markdown('##')
     st.bar_chart(df_current)
@@ -45,7 +45,7 @@ def employment_insights(df):
 
 def application_insights(df,select_type):
 #    st.header("Application Insights")
-    st.markdown(f"<h1 style='text-align: center; color: black;'>{select_type} Insights</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>{select_type} Insights</h1>", unsafe_allow_html=True)
     select_type = select_type.lower()
     current_sectoral_time_taken = df.groupby(['sector']).median()
     st.markdown('##')
@@ -54,7 +54,7 @@ def application_insights(df,select_type):
 
 def sectoral_insights(df,select_type):
 #    st.header(f"{select_type} Insights")
-    st.markdown(f"<h1 style='text-align: center; color: black;'>{select_type} Insights</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>{select_type} Insights</h1>", unsafe_allow_html=True)
     select_type = select_type.lower()
     current_state_sum = df.groupby([select_type]).sum()
     current_state_median = df.groupby([select_type]).median()
@@ -67,7 +67,7 @@ def sectoral_insights(df,select_type):
 
 def district_insights(df,select_type):
 #    st.header(f"{select_type} Insights")
-    st.markdown(f"<h1 style='text-align: center; color: black;'>{select_type} Insights</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;'>{select_type} Insights</h1>", unsafe_allow_html=True)
     select_type = select_type.lower()
     df_current =df.groupby([select_type]).median().sort_values(by=['investment'])
     st.bar_chart(df.groupby([select_type]).median()['investment'])
