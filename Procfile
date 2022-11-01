@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run Time_Series.py
+web: sh setup.sh && streamlit run Data_Analysis_Live.py
