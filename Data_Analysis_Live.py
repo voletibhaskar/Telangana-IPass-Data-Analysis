@@ -76,21 +76,17 @@ def district_insights(df,select_type):
     
     
 
-def main():
+def main(OPTIONS):
     st.title('Telangana Investment Data Analysis')
-    
-    uploaded_file = st.file_uploader('Understand your Dataset')
+    uploaded_file = st.file_uploader('Upload all_time_data.csv')
     progess_bar = st.progress(0)
     if uploaded_file:
 
         df = pd.read_csv(uploaded_file)
         st.sidebar.title('Dashboard Selector')
-        option = st.sidebar.selectbox("",('Telangana Investment Map','Investment Insights', 'Employment Insights', 'Application Insights', 'Sector Insights', 'District Insights','Data Statistics'),0)
+        option = st.sidebar.selectbox("",(OPTIONS),0)
         df = clean_data(df)
         df = time_taken(df)
-        for percent_complete in range(100):
-            time.sleep(0.005)
-            progess_bar.progress(percent_complete+1)
         select_type = option.split()[0]
         
         if option == 'Telangana Investment Map':
@@ -99,7 +95,6 @@ def main():
             col1_left.markdown('##')
             #components.iframe("https://www.google.com/maps/d/u/0/embed?mid=15PbXco8n_UAmg6XMnvwYX_paQy5g5BQ&ehbc=2E312F",width=700, height=580, scrolling=True)
             components.iframe("https://www.google.com/maps/d/u/0/embed?mid=15PbXco8n_UAmg6XMnvwYX_paQy5g5BQ&ehbc=2E312F",height=600)
-
         
         if option == 'Investment Insights':
             investment_insights(df)
@@ -136,5 +131,6 @@ def main():
 #    data = pd.read_csv("D:\Linkedin Learning\PythonTraining\Time_Series_Analysis\TS_Civil_Shop_Transactions\shop_status_details_01-01-2018 to 31-12-2018.csv")
 #    print(data.head())
 if __name__ == "__main__":
-    main()
+    OPTIONS = ['Telangana Investment Map','Investment Insights', 'Employment Insights', 'Application Insights', 'Sector Insights', 'District Insights','Data Statistics']
+    main(OPTIONS)
 
