@@ -36,13 +36,9 @@ def investment_insights(df):
     st.markdown(f"<h1 style='text-align: center;'>Investment Insights</h1>", unsafe_allow_html=True)
     st.write(df.describe())
     st.markdown('##')
-    st.bar_chart(df_current)
+    st.pie_chart(df_current)
+    
         
-
-def employment_insights(df):
-    st.header("Employment Insights")
-    st.write(df.describe())
-
 def application_insights(df,select_type):
 #    st.header("Application Insights")
     st.markdown(f"<h1 style='text-align: center;'>{select_type} Insights</h1>", unsafe_allow_html=True)
@@ -73,64 +69,65 @@ def district_insights(df,select_type):
     st.bar_chart(df.groupby([select_type]).median()['investment'])
 #    st.bar_chart(df_current)
     st.write(f'Median Investment, Employment and Time Taken in every {select_type}',df_current)
-    
-    
 
+        
 def main(OPTIONS):
     st.title('Telangana Investment Data Analysis')
-    uploaded_file = st.file_uploader('Upload all_time_data.csv')
-    progess_bar = st.progress(0)
-    if uploaded_file:
+    # uploaded_file = st.file_uploader('Upload all_time_data.csv')
+    # # Using object notation
+    # add_selectbox = st.sidebar.selectbox(
+    #     "Dataset Selector",
+    #     ("Latest Dataset Upload", "Current Dataset")
+    # )
 
-        df = pd.read_csv(uploaded_file)
-        st.sidebar.title('Dashboard Selector')
-        option = st.sidebar.selectbox("",(OPTIONS),0)
-        df = clean_data(df)
-        df = time_taken(df)
-        select_type = option.split()[0]
+    # if uploaded_file:
+
+    df = pd.read_csv('all_time_data_copy.csv')
+    st.sidebar.title('Dashboard Selector')
+    option = st.sidebar.selectbox("",(OPTIONS),0)
+    df = clean_data(df)
+    df = time_taken(df)
+    select_type = option.split()[0]
+    
+    if option == 'Telangana Investment Map':
+        # embed streamlit docs in a streamlit app
+        col1_left, col1_right = st.columns(2)
+        col1_left.markdown('##')
+        #components.iframe("https://www.google.com/maps/d/u/0/embed?mid=15PbXco8n_UAmg6XMnvwYX_paQy5g5BQ&ehbc=2E312F",width=700, height=580, scrolling=True)
+        components.iframe("https://www.google.com/maps/d/u/0/embed?mid=15PbXco8n_UAmg6XMnvwYX_paQy5g5BQ&ehbc=2E312F",height=600)
+    
+    if option == 'Investment Insights':
+        investment_insights(df)
         
-        if option == 'Telangana Investment Map':
-            # embed streamlit docs in a streamlit app
-            col1_left, col1_right = st.columns(2)
-            col1_left.markdown('##')
-            #components.iframe("https://www.google.com/maps/d/u/0/embed?mid=15PbXco8n_UAmg6XMnvwYX_paQy5g5BQ&ehbc=2E312F",width=700, height=580, scrolling=True)
-            components.iframe("https://www.google.com/maps/d/u/0/embed?mid=15PbXco8n_UAmg6XMnvwYX_paQy5g5BQ&ehbc=2E312F",height=600)
+    if option == 'Application Insights':
+        application_insights(df,select_type)
+
+    if option == 'Sector Insights':
+        sectoral_insights(df,select_type)
         
-        if option == 'Investment Insights':
-            investment_insights(df)
-
-        if option == 'Employment Insights':
-            employment_insights(df)
-            
-        if option == 'Application Insights':
-            application_insights(df,select_type)
-
-        if option == 'Sector Insights':
-            sectoral_insights(df,select_type)
-            
-        if option == 'District Insights':
-            district_insights(df,select_type)
+    if option == 'District Insights':
+        district_insights(df,select_type)
 
 
-        if option == 'Data Statistics':
-            
-            col1_left, col1_right = st.columns(2)
-
-            col1_left.header('Data Statistics')
-            col1_left.write(df.describe())
-
-            col1_right.header('Dataset Information')
-            buffer = io.StringIO()
-            df.info(buf=buffer)
-            s = buffer.getvalue()
-            col1_right.text(s)
-
+    if option == 'Data Statistics':
         
+        col1_left, col1_right = st.columns(2)
+
+        col1_left.header('Data Statistics')
+        col1_left.write(df.describe())
+
+        col1_right.header('Dataset Information')
+        buffer = io.StringIO()
+        df.info(buf=buffer)
+        s = buffer.getvalue()
+        col1_right.text(s)
+
+    
         
         
 #    data = pd.read_csv("D:\Linkedin Learning\PythonTraining\Time_Series_Analysis\TS_Civil_Shop_Transactions\shop_status_details_01-01-2018 to 31-12-2018.csv")
 #    print(data.head())
 if __name__ == "__main__":
-    OPTIONS = ['Telangana Investment Map','Investment Insights', 'Employment Insights', 'Application Insights', 'Sector Insights', 'District Insights','Data Statistics']
+    OPTIONS = ['Telangana Investment Map','Investment Insights', 'Application Insights', 'Sector Insights', 'District Insights','Data Statistics']
     main(OPTIONS)
 
